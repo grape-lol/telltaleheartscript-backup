@@ -1,0 +1,169 @@
+Already up to date.
+rm -f ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o ./libretro-common/file/file_path.o ./libretro-common/string/stdstring.o ./libretro-common/compat/compat_strl.o ./libretro-common/encodings/encoding_utf.o ./libretro-common/time/rtime.o ./libretro-common/memmap/memalign.o 
+rm -f  
+rm -f cap32_libretro.so
+rm -f unit-tests/*.o unit-tests/autorun unit-tests/test-db
+libretro/libretro-core.o
+cap32/cap32.o
+cap32/slots.o
+cap32/crtc.o
+cap32/fdc.o
+cap32/psg.o
+cap32/tape.o
+cap32/cart.o
+cap32/asic.o
+cap32/z80.o
+cap32/kbdauto.o
+cap32/lightgun/gunstick.o
+cap32/lightgun/phaser.o
+libretro/microui/microui.o
+libretro/db/database.o
+libretro/dsk/loader.o
+libretro/dsk/format.o
+libretro/dsk/amsdos_catalog.o
+libretro/gfx/software.o
+libretro/gfx/video.o
+libretro/gfx/video16bpp.o
+libretro/gfx/video24bpp.o
+libretro/assets/ui_keyboard_bg_crop.o
+libretro/assets/ui_keyboard_bg.o
+libretro/assets/ui_keyboard_en.o
+libretro/assets/ui_keyboard_es.o
+libretro/assets/ui_keyboard_fr.o
+libretro/assets/font.o
+libretro/retro_strings.o
+libretro/retro_utils.o
+libretro/retro_disk_control.o
+libretro/retro_events.o
+libretro/retro_snd.o
+libretro/retro_render.o
+libretro/retro_ui.o
+libretro/retro_gun.o
+libretro/retro_keyboard.o
+/usr/local/emscripten/upstream/emscripten/emar rcs cap32_libretro_emscripten.bc ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o 
+rm -f ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o ./libretro-common/file/file_path.o ./libretro-common/string/stdstring.o ./libretro-common/compat/compat_strl.o ./libretro-common/encodings/encoding_utf.o ./libretro-common/time/rtime.o ./libretro-common/memmap/memalign.o 
+rm -f  
+rm -f cap32_libretro.so
+rm -f unit-tests/*.o unit-tests/autorun unit-tests/test-db
+libretro/libretro-core.o
+cap32/cap32.o
+cap32/slots.o
+cap32/crtc.o
+cap32/fdc.o
+cap32/psg.o
+cap32/tape.o
+cap32/cart.o
+cap32/asic.o
+cap32/z80.o
+cap32/kbdauto.o
+cap32/lightgun/gunstick.o
+cap32/lightgun/phaser.o
+libretro/microui/microui.o
+libretro/db/database.o
+libretro/dsk/loader.o
+libretro/dsk/format.o
+libretro/dsk/amsdos_catalog.o
+libretro/gfx/software.o
+libretro/gfx/video.o
+libretro/gfx/video16bpp.o
+libretro/gfx/video24bpp.o
+libretro/assets/ui_keyboard_bg_crop.o
+libretro/assets/ui_keyboard_bg.o
+libretro/assets/ui_keyboard_en.o
+libretro/assets/ui_keyboard_es.o
+libretro/assets/ui_keyboard_fr.o
+libretro/assets/font.o
+libretro/retro_strings.o
+libretro/retro_utils.o
+libretro/retro_disk_control.o
+libretro/retro_events.o
+libretro/retro_snd.o
+libretro/retro_render.o
+libretro/retro_ui.o
+libretro/retro_gun.o
+libretro/retro_keyboard.o
+/usr/local/emscripten/upstream/emscripten/emar rcs cap32_libretro_emscripten.bc ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o 
+rm -f ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o ./libretro-common/file/file_path.o ./libretro-common/string/stdstring.o ./libretro-common/compat/compat_strl.o ./libretro-common/encodings/encoding_utf.o ./libretro-common/time/rtime.o ./libretro-common/memmap/memalign.o 
+rm -f  
+rm -f cap32_libretro.so
+rm -f unit-tests/*.o unit-tests/autorun unit-tests/test-db
+libretro/libretro-core.o
+cap32/cap32.o
+cap32/slots.o
+cap32/crtc.o
+cap32/fdc.o
+cap32/psg.o
+cap32/tape.o
+cap32/cart.o
+cap32/asic.o
+cap32/z80.o
+cap32/kbdauto.o
+cap32/lightgun/gunstick.o
+cap32/lightgun/phaser.o
+libretro/microui/microui.o
+libretro/db/database.o
+libretro/dsk/loader.o
+libretro/dsk/format.o
+libretro/dsk/amsdos_catalog.o
+libretro/gfx/software.o
+libretro/gfx/video.o
+libretro/gfx/video16bpp.o
+libretro/gfx/video24bpp.o
+libretro/assets/ui_keyboard_bg_crop.o
+libretro/assets/ui_keyboard_bg.o
+libretro/assets/ui_keyboard_en.o
+libretro/assets/ui_keyboard_es.o
+libretro/assets/ui_keyboard_fr.o
+libretro/assets/font.o
+libretro/retro_strings.o
+libretro/retro_utils.o
+libretro/retro_disk_control.o
+libretro/retro_events.o
+libretro/retro_snd.o
+libretro/retro_render.o
+libretro/retro_ui.o
+libretro/retro_gun.o
+libretro/retro_keyboard.o
+/usr/local/emscripten/upstream/emscripten/emar rcs cap32_libretro_emscripten.bc ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o 
+rm -f ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o ./libretro-common/file/file_path.o ./libretro-common/string/stdstring.o ./libretro-common/compat/compat_strl.o ./libretro-common/encodings/encoding_utf.o ./libretro-common/time/rtime.o ./libretro-common/memmap/memalign.o 
+rm -f  
+rm -f cap32_libretro.so
+rm -f unit-tests/*.o unit-tests/autorun unit-tests/test-db
+libretro/libretro-core.o
+cap32/cap32.o
+cap32/slots.o
+cap32/crtc.o
+cap32/fdc.o
+cap32/psg.o
+cap32/tape.o
+cap32/cart.o
+cap32/asic.o
+cap32/z80.o
+cap32/kbdauto.o
+cap32/lightgun/gunstick.o
+cap32/lightgun/phaser.o
+libretro/microui/microui.o
+libretro/db/database.o
+libretro/dsk/loader.o
+libretro/dsk/format.o
+libretro/dsk/amsdos_catalog.o
+libretro/gfx/software.o
+libretro/gfx/video.o
+libretro/gfx/video16bpp.o
+libretro/gfx/video24bpp.o
+libretro/assets/ui_keyboard_bg_crop.o
+libretro/assets/ui_keyboard_bg.o
+libretro/assets/ui_keyboard_en.o
+libretro/assets/ui_keyboard_es.o
+libretro/assets/ui_keyboard_fr.o
+libretro/assets/font.o
+libretro/retro_strings.o
+libretro/retro_utils.o
+libretro/retro_disk_control.o
+libretro/retro_events.o
+libretro/retro_snd.o
+libretro/retro_render.o
+libretro/retro_ui.o
+libretro/retro_gun.o
+libretro/retro_keyboard.o
+/usr/local/emscripten/upstream/emscripten/emar rcs cap32_libretro_emscripten.bc ./libretro/libretro-core.o ./cap32/cap32.o ./cap32/slots.o ./cap32/crtc.o ./cap32/fdc.o ./cap32/psg.o ./cap32/tape.o ./cap32/cart.o ./cap32/asic.o ./cap32/z80.o ./cap32/kbdauto.o ./cap32/lightgun/gunstick.o ./cap32/lightgun/phaser.o ./libretro/microui/microui.o ./libretro/db/database.o ./libretro/dsk/loader.o ./libretro/dsk/format.o ./libretro/dsk/amsdos_catalog.o ./libretro/gfx/software.o ./libretro/gfx/video.o ./libretro/gfx/video16bpp.o ./libretro/gfx/video24bpp.o ./libretro/assets/ui_keyboard_bg_crop.o ./libretro/assets/ui_keyboard_bg.o ./libretro/assets/ui_keyboard_en.o ./libretro/assets/ui_keyboard_es.o ./libretro/assets/ui_keyboard_fr.o ./libretro/assets/font.o ./libretro/retro_strings.o ./libretro/retro_utils.o ./libretro/retro_disk_control.o ./libretro/retro_events.o ./libretro/retro_snd.o ./libretro/retro_render.o ./libretro/retro_ui.o ./libretro/retro_gun.o ./libretro/retro_keyboard.o 
