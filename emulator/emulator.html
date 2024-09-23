@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/grape-lol/telltaleheartscript/refs/heads/main/assets/favicon.png" />
+    <link rel="stylesheet" href="../assets/styles.css">
+    <style>
+      #game {
+        background-color: black;
+        width: 900px;
+        height: 600px;
+        margin: 0 auto;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>
+        <a href="../index.html">Brandon's Unblocked Games</a>
+      </h1>
+    </div>
+    <div class="game-container game-page">
+      <div class="rom-selection">
+        <label for="rom-select">Choose a ROM:</label>
+        <select id="rom-select" class="rom-select">
+          <optgroup label="NES ROMs">
+            <option value="roms/nes/Battletoads.nes">Battletoads</option>
+          </optgroup>
+
+          <optgroup label="Neo Geo Pocket ROMs">
+            <option value="roms/ngp/Pac-Man.ngc">Pac-Man</option>
+          </optgroup>
+
+          <optgroup label="Game Boy Advance ROMs">
+            <option value="roms/gba/Pokemon - Emerald Version.gba">Pokemon - Emerald Version</option>
+            <option value="roms/gba/Grand Theft Auto Advance.gba">Grand Theft Auto Advance</option>
+          </optgroup>
+
+          <optgroup label="Game Gear ROMs">
+            <option value="roms/gg/Ms. Pac-Man.gg">Ms. Pac-Man</option>
+          </optgroup>
+
+          <optgroup label="Atari Lynx ROMs">
+            <option value="roms/lynx/Pac-Land.lnx">Pac-Land</option>
+          </optgroup>
+
+          <optgroup label="SNES ROMs">
+            <option value="roms/snes/Doom.smc">Doom (1993)</option>
+            <option value="roms/snes/Super Mario World.smc">Super Mario World</option>
+          </optgroup>
+
+        </select>
+        <button id="load-rom" class="btn">Load ROM</button>
+      </div>
+      <div id="game" class="game-iframe"></div>
+      <div class="fullscreen-btn-container">
+        <button onclick="open_fullscreen()" class="btn btn-capsule">
+          <i class="bi bi-arrows-fullscreen b-icon"></i> Fullscreen </button>
+      </div>
+    </div>
+    <script>
+      document.getElementById('load-rom').onclick = function() {
+        const selectedROM = document.getElementById('rom-select').value;
+        const coreMap = {
+          'nes': 'fceumm', // NES (Nintendo Entertainment System)
+          'gb': 'gambatte', // GB (Game Boy)
+          'gba': 'mgba', // GBA (Game Boy Advance)
+          'snes': 'snes9x', // SNES (Super Nintendo Entertainment System)
+          'n64': 'mupen64plus_next', // N64 (Nintendo 64)
+          'nds': 'melonds', // NDS (Nintendo DS)
+          'vb': 'beetle_vb', // VB (Virtual Boy)
+          'segaMD': 'genesis_plus_gx', // Sega MD (Mega Drive)
+          'segaCD': 'genesis_plus_gx', // Sega CD (Mega CD)
+          'gg': 'genesis_plus_gx', // Game Gear
+          'sega32x': 'picodrive', // Sega 32X
+          'segaMS': 'smsplus', // Sega MS (Master System)
+          'segaGG': 'genesis_plus_gx', // Sega GG (Game Gear)
+          'segaSaturn': 'yabause', // Sega Saturn
+          '3do': 'opera', // 3DO
+          'atari2600': 'stella2014', // Atari 2600
+          'atari7800': 'prosystem', // Atari 7800
+          'lynx': 'handy', // Atari Lynx
+          'jaguar': 'virtualjaguar', // Atari Jaguar
+          'arcade': 'fbneo', // Arcade games
+          'mame': 'mame2003', // MAME (Multiple Arcade Machine Emulator)
+          'psx': 'pcsx_rearmed', // PSX (PlayStation 1)
+          'psx_hw': 'mednafen_psx_hw', // PSX (hardware accelerated)
+          'a5200': 'a5200', // Atari 5200
+          'mame2003_plus': 'mame2003_plus', // MAME 2003 Plus
+          'fbalpha2012_cps1': 'fbalpha2012_cps1', // FB Alpha CPS1
+          'fbalpha2012_cps2': 'fbalpha2012_cps2', // FB Alpha CPS2
+          'pcfx': 'mednafen_pcfx', // PC-FX
+          'pce': 'mednafen_pce', // PCE (TurboGrafx-16)
+          'coleco': 'gearcoleco', // ColecoVision
+          'c64': 'vice_x64sc', // C64 (Commodore 64)
+          'c128': 'vice_x128', // C128 (Commodore 128)
+          'pet': 'vice_xpet', // PET (Commodore PET)
+          'plus4': 'vice_xplus4', // Plus/4 (Commodore Plus/4)
+          'vic20': 'vice_xvic', // VIC-20 (Commodore VIC-20)
+          'amiga': 'puae', // Amiga
+          'ngp': 'mednafen_ngp', // Neo Geo Pocket
+          'ws': 'mednafen_wswan', // WonderSwan
+        };
+        if (selectedROM) {
+          const coreName = selectedROM.split('/')[1].toLowerCase();
+          EJS_player = "#game";
+          EJS_core = coreMap[coreName] || 'default_core';
+          EJS_pathtodata = "data/";
+          EJS_gameUrl = selectedROM;
+          EJS_Buttons = {
+            fullscreen: false
+          }
+          const script = document.createElement('script');
+          script.src = "data/loader.js";
+          document.body.appendChild(script);
+        } else {
+          alert('Please select a ROM!');
+        }
+      };
+
+      function open_fullscreen() {
+        var elem = document.getElementById('game');
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      }
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'f' || event.key === 'F') {
+          open_fullscreen();
+        }
+      });
+    </script>
+  </body>
+</html>

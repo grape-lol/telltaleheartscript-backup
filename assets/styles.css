@@ -1,0 +1,309 @@
+:root {
+    --primary-color: #6200ea; 
+    --secondary-color: #6200ea;
+    --text-color: #dddddd; 
+    --bg-color: #0b0b06;
+    --white: #000000; 
+    --container-bg-color: #1e1e1e; 
+    --container-border-color: #454545; 
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(.8rem, 3.5vw, 1rem);
+}
+
+body {
+    background: var(--bg-color); 
+    color: var(--text-color); 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.rom-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rom-selection label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.rom-select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--container-bg-color);
+    border: 2px solid var(--container-border-color);
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.rom-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.2);
+}
+
+.rom-select optgroup {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.rom-select option {
+    padding: 10px;
+    color: var(--text-color);
+}
+
+.rom-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236200ea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+@media (max-width: 480px) {
+    .rom-select {
+        font-size: 0.9rem;
+    }
+}
+
+.header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    width: 100%;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    line-height: 1.2;
+}
+
+.header h1 a {
+    color: var(--white);
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    font-family: 'Press Start 2P', cursive;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+.header h1 a:hover {
+    color: #bb86fc;
+}
+
+.game-container {
+    background: var(--container-bg-color);
+    border: 2px solid var(--container-border-color);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    animation: fadeInUp 1s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation-fill-mode: forwards;
+}
+
+.game-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 10px;
+}
+
+.game-container h4 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color); 
+}
+
+.fullscreen-btn-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.game-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adds space between list items */
+    max-width: 600px; /* Optionally limit width */
+    margin: 0 auto; /* Centers the list on the page */
+}
+
+.game-list li {
+    display: block;
+}
+
+.game-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    display: block;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.game-list a:hover {
+    background-color: #510187;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 300px;
+}
+
+.notification p {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff6666;
+}
+
+.btn {
+    background-color: var(--secondary-color); 
+    color: var(--white); 
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    white-space: nowrap;
+    min-width: 150px;
+}
+
+.btn:hover {
+    background-color: #510187;
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.game-container.game-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.game-container.index-page {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.fullscreen-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .game-container.game-page iframe {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.75rem;
+    }
+    .header h1 a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container.game-page {
+        padding: 0 10px;
+    }
+
+    .fullscreen-btn-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebula</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="assets/css/test.css">
+    <script>
+        let isPPressed = localStorage.getItem('isPPressed') === 'true';
+
+        function checkUserAgent() {
+            const userAgent = navigator.userAgent;
+
+            if (!userAgent.includes('X11; CrOS x86_64')) {
+                if (!isPPressed) {
+                    document.title = "Redirecting...";
+                    showExcerptAndRedirect();
+                } else {
+                    showGameContainer();
+                }
+            } else {
+                showGameContainer();
+            }
+        }
+
+        function showGameContainer() {
+            document.querySelector('.game-container').classList.remove('hidden');
+            document.querySelector('.header').classList.remove('hidden');
+        }
+
+        function showExcerptAndRedirect() {
+            document.querySelector('.header').classList.add('hidden');
+            document.querySelector('.game-container').classList.add('hidden');
+
+            const excerpt = "It’s true! Yes, I have been ill—very ill. But why will you say that I am mad? The disease had sharpened my senses—not destroyed—not dulled them. Above all was the sense of hearing acute. I heard all things in the heaven and in the earth. I heard many things in hell. How, then, am I mad? Hearken! and observe how healthily—how calmly I tell you the whole story.\n\n" +
+                            "It is impossible to say how first the idea entered my brain; but once conceived, it haunted me. You should have seen me. I would have laughed at what you would call the disease. I could not sleep. I had not lost my mind; I had but to use my own; I had to make it part of me...";
+
+            const excerptContainer = document.createElement('div');
+            excerptContainer.className = 'excerpt-container';
+            excerptContainer.innerText = excerpt;
+
+            document.body.appendChild(excerptContainer);
+
+            setTimeout(() => {
+                if (!isPPressed) {
+                    window.location.href = 'https://error.org';
+                } else {
+                    showGameContainer();
+                }
+            }, 1000);
+        }
+
+        window.onload = checkUserAgent;
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'P' || event.key === 'p') {
+                event.preventDefault();
+                isPPressed = true;
+                localStorage.setItem('isPPressed', 'true');
+                alert("You pressed the P key, but no redirect will happen.");
+                
+                const excerptContainer = document.querySelector('.excerpt-container');
+                if (excerptContainer) {
+                    excerptContainer.remove();
+                }
+
+                document.title = "Nebula";
+                showGameContainer();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="header hidden">
+        <h1><s>Brandon's Unblocked Games</s> <br>Nebula 🌌</h1></h1>
+    </div>
+
+    <div class="game-container hidden">
+        <h1>Select a Game</h1>
+        <ul class="game-list">
+            <!-- OTHER THINGS -->
+            <li><a href="emulator/emulator.html" class="btn">Game Emulator <br>(Classic Games)</br></a></li>
+
+            <!-- HTML5 GAMES -->
+            <li><a href="games/html5/eaglercraft-188/run.html" class="btn">Minecraft 1.8.8</a></li>
+            <li><a href="games/html5/sm64/run.html" class="btn">Super Mario 64</a></li>
+            <li><a href="games/html5/2048/run.html" class="btn">2048</a></li>
+            <li><a href="games/html5/tetris/run.html" class="btn">Tetris</a></li>
+            <li><a href="games/html5/cookie-clicker/run.html" class="btn">Cookie Clicker</a></li>
+            <li><a href="games/html5/breaklock/run.html" class="btn">BreakLock</a></li>
+
+            <!-- FLASH GAMES -->
+            <li><a href="games/flash/pac-man/run.html" class="btn">Pac-Man</a></li>
+            <li><a href="games/flash/the-game/run.html" class="btn">:the game:</a></li>
+        </ul>        
+    </div>
+</body>
+</html>
