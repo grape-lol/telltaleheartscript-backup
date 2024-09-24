@@ -4,12 +4,17 @@ Welcome to **Nebula**, your hub for unblocked games! 🎮 We're here to help you
 
 **🔔 Stay Updated:**  
 Check this README regularly for any updates.  
-Latest Link: `https://grape-lol.github.io/telltaleheartscript/`
+Latest Link: `https://grape-lol.github.io/telltaleheartscript-backup/`
 
 **🕹️ Changelog:**
-- **Emulator Update:**
+
+- **(9/24/2024) Emulator Update:**
   - Added Atari 2600 games.
   - Planned feature: Upload your own ROMs.
+- **(9/24/2024) Other Update:**
+  - Fixed CSS (styling) to be fluent.
+  - Fixed Pac-Man not working.
+  - Updated Eaglercraft (Minecraft) to latest version.
 
 **📞 Contact:**  
 Discord: `noobexploits`

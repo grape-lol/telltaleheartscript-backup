@@ -1,0 +1,14 @@
+IP: wss://mc.arch.lol
+Description: ArchMC is the biggest Eaglercraft server with gamemodes designed for every play style. Founded by a team of Minecrafters, our server has become the go-to for anybody seeking a new experience and a fresh breath of gameplay. Whether you're into Minigames, Hardcore Survival, or Creative plots, there's something for everyone here.
+
+IP: wss://vanillamc.me
+Description: The best EaglercraftX 1.8 factions server, supporting both java and eaglercraft whilst featuring a vanilla factions experience with fun events and gameplay.
+
+IP: wss://clever-teaching.com
+Description: Clever Teaching! One of EaglerCraft’s biggest servers! With gamemodes designed for a variety of people! Survival, Crystal PVP, Prisons, or lifesteal! The choice is yours to explore!
+
+IP: wss://mc.asspixel.net
+Description: Asspixel is a Hypixel-like alternative for Eaglercraft, offering PVP, PVE, minigames, and Skyblock, and is developed by a 16-year-old developer named FrenchToast.
+
+IP: wss://eagler.nobnot.org
+Description: noBnoT is a well-managed Eaglercraft anarchy server with no rules, allowing players to use hacks and engage in unrestricted gameplay. It runs on Minecraft Java version 1.21.1, supporting all versions from 1.7.x to 1.21.x, and is accessible via Eaglercraft and Java Edition IPs.
