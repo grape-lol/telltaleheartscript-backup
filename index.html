@@ -13,7 +13,7 @@
         function checkUserAgent() {
             const userAgent = navigator.userAgent;
 
-            if (!userAgent.includes('X11; CrOS x86_64')) {
+            if (!userAgent.includes('CrOS')) {
                 if (!isPPressed) {
                     document.title = "Redirecting...";
                     showExcerptAndRedirect();
