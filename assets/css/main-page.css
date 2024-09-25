@@ -116,39 +116,43 @@ body {
 }
 
 .game-list a {
-    display: block;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: var(--bg-color); /* Black text on pastel purple */
+    background-color: var(--container-bg-color);
+    border-color: var(--container-border-color);
+    background: linear-gradient(135deg, #2b2b2b, #343434);
+    border: 2px solid var(--container-border-color);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centers the image and text */
+    color: var(--text-color);
     text-decoration: none;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;  /* Ensures text stays centered */
+}
+
+.game-list img {
+    background-color: var(--container-bg-color);
+    border-color: var(--container-border-color);
+    background: linear-gradient(135deg, #2b2b2b, #343434);
+    border: 2px solid var(--container-border-color);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    width: 150px;  /* Increase the size of the image */
+    height: 150px;  /* Keep it square */
+    object-fit: cover;  /* Ensures image is scaled up without distortion */
+    margin-bottom: 20px;  /* Add space between the image and text */
+}
+
+.game-list span {
     font-size: 1rem;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.game-list a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: 0.5s;
-    z-index: -1;
-}
-
-.game-list a:hover::before {
-    left: 100%;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;  /* Ensure text stays centered */
+    margin-top: 0.5rem;
 }
 
 .game-list a:hover {
-    transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
