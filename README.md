@@ -8,12 +8,8 @@ Latest Link: `https://grape-lol.github.io/telltaleheartscript-backup/`
 
 **🕹️ Important Changelog:**
 
-- **(9/24/2024) Emulator Update:**
-  - Added Atari 2600 games.
-  - Planned feature: Upload your own ROMs.
-- **(9/24/2024) Other Update:**
-  - Fixed CSS (styling) to be fluent.
-  - Added more Minecraft versions.
+- **(9/24/2024) HTML5 Games:**
+  - Chrome Dino
 
 **📞 Contact:**  
 Discord: `noobexploits`
