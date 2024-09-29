@@ -8,8 +8,8 @@ Latest Link: `https://grape-lol.github.io/telltaleheartscript-backup/`
 
 **🕹️ Important Changelog:**
 
-- **(9/24/2024) HTML5 Games:**
-  - Chrome Dino
+- **(9/29/2024) Movies:**
+  - Added Movies!
 
 **📞 Contact:**  
 Discord: `noobexploits`
