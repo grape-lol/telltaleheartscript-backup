@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies But With Bad CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+        }
+        .movie-card {
+            background-color: #1e1e1e;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .search-results-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Movies But With Bad CSS</h1>
+    <input type="text" id="search-bar" placeholder="Search for movies...">
+</header>
+
+<div id="movie-container" class="search-results-grid"></div>
+
+<script>
+    const apiUrl = 'https://zonal-helsa-nebula420-8cf52411.koyeb.app';
+    const movieContainer = document.getElementById('movie-container');
+    const searchBar = document.getElementById('search-bar');
+
+    async function fetchTrendingMovies() {
+        try {
+            const response = await fetch(`${apiUrl}/trending`);
+            const movies = await response.json();
+            displayMovies(movies);
+        } catch (error) {
+            console.error("Error fetching trending movies:", error);
+        }
+    }
+
+function displayMovies(movies) {
+    movieContainer.innerHTML = '';
+    movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+        movieCard.innerHTML = `
+            <img src="${movie.poster}" alt="${movie.title}">
+            <h2>${movie.title} (${movie.year})</h2>
+            <p>${movie.description}</p>
+            <a href="${apiUrl}${movie.link}" class="watch-now">Watch Now</a>
+        `;
+        movieContainer.appendChild(movieCard);
+        console.log(`${apiUrl}${movie.link}`); // Log the constructed URL for debugging
+    });
+}
+
+
+
+    async function searchMovies(query) {
+        try {
+            const response = await fetch(`${apiUrl}/search/${query}`);
+            const results = await response.json();
+            displayMovies(results);
+        } catch (error) {
+            console.error("Error fetching search results:", error);
+        }
+    }
+
+    searchBar.addEventListener('keyup', (event) => {
+        const query = event.target.value;
+        if (query) {
+            searchMovies(query);
+        } else {
+            fetchTrendingMovies(); // If search bar is empty, fetch trending movies
+        }
+    });
+
+    // Fetch trending movies on page load
+    fetchTrendingMovies();
+</script>
+
+</body>
+</html>
