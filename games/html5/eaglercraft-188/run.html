@@ -52,8 +52,11 @@
             });
           }
         }
+
+        var elem2 = document.getElementById('game-area');
+        elem2.focus();
   
-        document.getElementById('game-container').addEventListener('click', function() {
+        document.getElementById('game-area').addEventListener('click', function() {
           var gameIframe = document.getElementById('game-area');
           gameIframe.focus();
         });
