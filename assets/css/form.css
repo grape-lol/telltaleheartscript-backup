@@ -126,7 +126,7 @@ body {
 .game-list a {
     display: block;
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: var(--bg-color); /* Black text on pastel purple */
+    color: var(--bg-color);
     text-decoration: none;
     padding: 0.75rem 1rem;
     border-radius: 12px;
