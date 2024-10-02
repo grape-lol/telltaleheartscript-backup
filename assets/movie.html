@@ -125,9 +125,7 @@
                 }" alt="${movie.title} Poster">
                 <h2>${movie.title} (${movie.year})</h2>
                 <p>${movie.description}</p>
-                <a href="${apiUrl}${
-            movie.vidsrc
-          }" class="watch-now">Watch Now</a>
+                <a href="${apiUrl}${movie.link}" class="watch-now">Watch Now</a>
             `;
           movieContainer.appendChild(movieCard);
         });
@@ -160,8 +158,10 @@
         }
       });
 
+      // Fetch trending movies on page load
       fetchTrendingMovies();
 
+      // Preventing context menu to avoid pop-up ads
       document.addEventListener("contextmenu", (event) =>
         event.preventDefault()
       );
