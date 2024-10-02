@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies But With Bad CSS</title>
+    <meta name="description" content="Watch trending movies or search for your favorite films.">
+    <meta name="keywords" content="Movies, Search, Watch, Trending">
+    <title>Movies But With A Hair Better CSS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,66 +33,104 @@
             display: inline-block;
             width: 200px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
         }
         img {
             width: 100%;
             border-radius: 5px;
+            height: auto;
         }
         .search-results-grid {
             display: flex;
             flex-wrap: wrap;
+        }
+        .watch-now {
+            display: block;
+            margin-top: 10px;
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .watch-now:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        .loading {
+            text-align: center;
+            font-size: 18px;
+        }
+        .error-message {
+            text-align: center;
+            color: red;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Movies But With Bad CSS</h1>
-    <input type="text" id="search-bar" placeholder="Search for movies...">
+    <h1>Movies But With Better CSS</h1>
+    <input type="text" id="search-bar" placeholder="Search for movies..." aria-label="Search for movies">
 </header>
 
+<div id="loading-message" class="loading">Loading trending movies...</div>
 <div id="movie-container" class="search-results-grid"></div>
+<div id="error-message" class="error-message" style="display: none;">Error loading movies</div>
 
 <script>
     const apiUrl = 'https://zonal-helsa-nebula420-8cf52411.koyeb.app';
     const movieContainer = document.getElementById('movie-container');
     const searchBar = document.getElementById('search-bar');
+    const loadingMessage = document.getElementById('loading-message');
+    const errorMessage = document.getElementById('error-message');
 
     async function fetchTrendingMovies() {
         try {
+            loadingMessage.style.display = 'block';
             const response = await fetch(`${apiUrl}/trending`);
             const movies = await response.json();
+            loadingMessage.style.display = 'none';
             displayMovies(movies);
         } catch (error) {
-            console.error("Error fetching trending movies:", error);
+            handleError(error);
         }
     }
 
-function displayMovies(movies) {
-    movieContainer.innerHTML = '';
-    movies.forEach(movie => {
-        const movieCard = document.createElement('div');
-        movieCard.className = 'movie-card';
-        movieCard.innerHTML = `
-            <img src="${movie.poster}" alt="${movie.title}">
-            <h2>${movie.title} (${movie.year})</h2>
-            <p>${movie.description}</p>
-            <a href="${apiUrl}${movie.link}" class="watch-now">Watch Now</a>
-        `;
-        movieContainer.appendChild(movieCard);
-        console.log(`${apiUrl}${movie.link}`); // Log the constructed URL for debugging
-    });
-}
+    function displayMovies(movies) {
+        movieContainer.innerHTML = '';
+        if (movies.length === 0) {
+            movieContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+        movies.forEach(movie => {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card';
+            movieCard.innerHTML = `
+                <img src="${movie.poster}" alt="${movie.title} Poster">
+                <h2>${movie.title} (${movie.year})</h2>
+                <p>${movie.description}</p>
+                <a href="${apiUrl}${movie.link}" class="watch-now">Watch Now</a>
+            `;
+            movieContainer.appendChild(movieCard);
+        });
+    }
 
-
+    function handleError(error) {
+        console.error("Error:", error);
+        errorMessage.style.display = 'block';
+        loadingMessage.style.display = 'none';
+    }
 
     async function searchMovies(query) {
         try {
+            loadingMessage.style.display = 'block';
             const response = await fetch(`${apiUrl}/search/${query}`);
             const results = await response.json();
+            loadingMessage.style.display = 'none';
             displayMovies(results);
         } catch (error) {
-            console.error("Error fetching search results:", error);
+            handleError(error);
         }
     }
 
@@ -99,7 +139,7 @@ function displayMovies(movies) {
         if (query) {
             searchMovies(query);
         } else {
-            fetchTrendingMovies(); // If search bar is empty, fetch trending movies
+            fetchTrendingMovies();
         }
     });
 
