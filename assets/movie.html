@@ -57,17 +57,22 @@
           loadingMessage.style.display = "none";
           displayMovies(movies);
           // Show the "Show More" button if there are more movies to load
-          if (movies.length > 0) {
-            document.getElementById("show-more").style.display = "block";
-          } else {
-            document.getElementById("show-more").style.display = "none";
-          }
+          document.getElementById("show-more").style.display =
+            movies.length > 0 ? "block" : "none";
         } catch (error) {
           handleError(error);
         }
       }
 
       function displayMovies(movies) {
+        // Clear the movie container before displaying new movies
+        movieContainer.innerHTML = ""; // Clear previous results
+
+        if (movies.length === 0) {
+          movieContainer.innerHTML = "<p>No movies found.</p>";
+          return;
+        }
+
         movies.forEach((movie) => {
           const movieCard = document.createElement("div");
           movieCard.className = "movie-card";
@@ -79,7 +84,7 @@
           <h2>${movie.title} (${movie.year})</h2>
           <p>${movie.description}</p>
           <a href="${apiUrl}${movie.link}" class="watch-now">Watch Now</a>
-      `;
+        `;
           movieContainer.appendChild(movieCard);
         });
       }
@@ -126,11 +131,6 @@
 
       // Fetch trending movies on page load
       fetchTrendingMovies();
-
-      // Preventing context menu to avoid pop-up ads
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault()
-      );
     </script>
   </body>
 </html>
