@@ -4,7 +4,7 @@ Welcome to **Nebula**, your hub for unblocked games! 🎮 We're here to help you
 
 **🔔 Stay Updated:**  
 Check this README regularly for any updates.  
-Latest Link: `https://grape-lol.github.io/telltaleheartscript-backup/`
+Latest Link: `https://grape-lol.github.io`
 
 **🕹️ Important Changelog:**
 
