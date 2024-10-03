@@ -11,6 +11,7 @@
       name="keywords"
       content="Movies, Search, Watch, Trending, Movie Web, TV Shows"
     />
+    <meta name="referrer" content="origin" />
     <title>Nebula Movie Loader 🍿</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -123,11 +124,6 @@
         currentPage++;
         fetchTrendingMovies(currentPage); // Fetch the next page of movies
       });
-
-      // Preventing context menu to avoid pop-up ads
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault()
-      );
 
       // Fetch trending movies on page load
       fetchTrendingMovies();
