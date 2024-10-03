@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EaglercraftX 1.11.2</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://raw.githubusercontent.com/grape-lol/telltaleheartscript-backup/refs/heads/main/assets/favicon.png"
+    />
+    <link rel="stylesheet" href="../../../assets/css/html5-games.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>
+        <a href="../../../index.html">Nebula 🪓</a>
+      </h1>
+    </div>
+    <div class="notification">
+      <a
+        >(Sometimes) Bug: You must click the fullscreen button (you can exit
+        after) to type!</a
+      >
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="game-container game-page" id="game-container">
+      <iframe
+        class="game-iframe"
+        id="game-area"
+        src="game/EaglercraftZ_1.11.2.html"
+        width="900"
+        height="600"
+        scrolling="none"
+        frameborder="0"
+        allow="fullscreen; gamepad; keyboard"
+      ></iframe>
+      <h4>EaglercraftX 1.11.2</h4>
+      <div class="fullscreen-btn-container">
+        <button onclick="open_fullscreen()" class="btn btn-capsule">
+          <i class="bi bi-arrows-fullscreen b-icon"></i> Fullscreen
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function open_fullscreen() {
+        var elem = document.getElementById("game-area");
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().then(() => {
+            elem.focus();
+          });
+        } else if (elem.mozRequestFullScreen) {
+          /* Firefox */
+          elem.mozRequestFullScreen().then(() => {
+            elem.focus();
+          });
+        } else if (elem.webkitRequestFullscreen) {
+          /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen().then(() => {
+            elem.focus();
+          });
+        } else if (elem.msRequestFullscreen) {
+          /* IE/Edge */
+          elem.msRequestFullscreen().then(() => {
+            elem.focus();
+          });
+        }
+      }
+
+      document
+        .getElementById("game-container")
+        .addEventListener("click", function () {
+          var gameIframe = document.getElementById("game-area");
+          gameIframe.focus();
+        });
+    </script>
+    <script src="../../../assets/close.js"></script>
+  </body>
+</html>
