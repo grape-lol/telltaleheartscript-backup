@@ -6,13 +6,6 @@ Welcome to **Nebula**, your hub for unblocked games! 🎮 We're here to help you
 Check this README regularly for any updates.  
 Latest Link: `https://grape-lol.github.io`
 
-**🕹️ Important Changelog:**
-
-- **(10/14/2024) HTML5:**
-  - Added BTD4 and Slime Rancher!
-- **(9/29/2024) Movies:**
-  - Added Movies!
-
 **📞 Contact:**  
 Discord: `noobexploits`
 
