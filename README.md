@@ -8,6 +8,8 @@ Latest Link: `https://grape-lol.github.io`
 
 **🕹️ Important Changelog:**
 
+- **(10/14/2024) HTML5:**
+  - Added BTD4 and Slime Rancher!
 - **(9/29/2024) Movies:**
   - Added Movies!
 
