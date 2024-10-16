@@ -15,3 +15,5 @@ There is a keybind by pressing **F** this will just make you go in full screen i
 If you’re not using a Chromebook, you’ll be redirected to `error.org`. To bypass this, press **P** within the first second! This will save your preference, so you won’t have to press P again unless you clear your cookies.
 
 Enjoy the games! 🎉
+
+![GitHub repo size](https://img.shields.io/github/repo-size/grape-lol/telltaleheartscript-backup?style=flat&color=%23b482ff)
