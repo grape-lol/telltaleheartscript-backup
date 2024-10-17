@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey Mart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/grape-lol/telltaleheartscript-backup/refs/heads/main/assets/favicon.png" />
+    <link rel="stylesheet" href="../../../assets/css/html5-games.css">
+    <body>
+      <div class="header">
+        <h1>
+            <a href="../../../index.html">Nebula 💵</a>
+        </h1>
+    </div>    
+      <div class="game-container game-page">
+        <iframe class="game-iframe" id="game-area" src="game/index.html" width="900" height="600" scrolling="none" frameborder="0" allowfullscreen></iframe>
+        <h4>Monkey Mart</h4>
+        <div class="fullscreen-btn-container">
+          <button onclick="open_fullscreen()" class="btn btn-capsule">
+            <i class="bi bi-arrows-fullscreen b-icon"></i> Fullscreen
+          </button>
+        </div>
+      </div>
+
+    <script>
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'f' || event.key === 'F') {
+          open_fullscreen();
+        }
+      });
+
+      function open_fullscreen() {
+        var elem = document.getElementById('game-area');
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          elem.msRequestFullscreen();
+        }
+      }
+    </script>
+  </body>
+</html>
