@@ -41,6 +41,7 @@ async function exportIndexedDB() {
         dbData[dbName] = {};
 
         const openRequest = indexedDB.open(dbName);
+        
         openRequest.onupgradeneeded = function (event) {
             const thisDB = event.target.result;
             for (let i = 0; i < thisDB.objectStoreNames.length; i++) {
@@ -51,7 +52,10 @@ async function exportIndexedDB() {
 
         openRequest.onsuccess = function (event) {
             const dbConnection = event.target.result;
-            dbConnection.objectStoreNames.forEach((storeName) => {
+            // Convert DOMStringList to an array
+            const objectStoreNames = Array.from(dbConnection.objectStoreNames);
+
+            objectStoreNames.forEach((storeName) => {
                 const transaction = dbConnection.transaction(storeName, 'readonly');
                 const objectStore = transaction.objectStore(storeName);
                 const allRecords = objectStore.getAll();
