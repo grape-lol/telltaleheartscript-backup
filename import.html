@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage Importer</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.5;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffeeba;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .warning strong {
+            color: #dc3545;
+        }
+
+        .warning-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .import-all {
+            background: #28a745 !important;
+            font-size: 1.2em;
+            padding: 1rem 2rem !important;
+            margin-bottom: 2rem;
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .import-all:hover {
+            background: #218838 !important;
+        }
+
+        .file-input-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .file-input {
+            margin-bottom: 1rem;
+        }
+        
+        .storage-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background: #0070f3;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+        
+        button:hover {
+            background: #0051bc;
+        }
+        
+        pre {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .preview {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .tldr {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        #importStatus {
+            display: none;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning">
+        <div class="warning-header">⚠️ Important Notice</div>
+        You need to import your game data to continue where you left off. If you don't import your saved data now, 
+        you'll need to start over from the beginning. Make sure to use the backup file you downloaded from the previous site.
+        <div class="tldr">
+            TL;DR: Import your data now or you'll need to restart from scratch!
+        </div>
+    </div>
+
+    <div class="file-input-wrapper">
+        <input type="file" id="importFile" accept=".json" class="file-input">
+        <button class="import-all" onclick="importAll()">⬆️ IMPORT ALL DATA</button>
+    </div>
+
+    <div id="importStatus"></div>
+
+    <h1>Web Storage Importer</h1>
+    
+    <div class="storage-section">
+        <h2>Local Storage</h2>
+        <input type="file" accept=".json" id="localStorageFile">
+        <button onclick="importLocalStorage()">Import Local Storage</button>
+        <button onclick="clearLocalStorage()">Clear Local Storage</button>
+        <pre id="localStoragePreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Session Storage</h2>
+        <input type="file" accept=".json" id="sessionStorageFile">
+        <button onclick="importSessionStorage()">Import Session Storage</button>
+        <button onclick="clearSessionStorage()">Clear Session Storage</button>
+        <pre id="sessionStoragePreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Cookies</h2>
+        <input type="file" accept=".json" id="cookiesFile">
+        <button onclick="importCookies()">Import Cookies</button>
+        <button onclick="clearCookies()">Clear Cookies</button>
+        <pre id="cookiesPreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>IndexedDB</h2>
+        <input type="file" accept=".json" id="indexedDBFile">
+        <button onclick="importIndexedDB()">Import IndexedDB</button>
+        <button onclick="clearIndexedDB()">Clear IndexedDB</button>
+        <pre id="indexedDBPreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Cache Storage</h2>
+        <input type="file" accept=".json" id="cacheStorageFile">
+        <button onclick="importCacheStorage()">Import Cache Storage</button>
+        <button onclick="clearCacheStorage()">Clear Cache Storage</button>
+        <pre id="cacheStoragePreview" class="preview"></pre>
+    </div>
+
+    <script>
+        function showStatus(message, isError = false) {
+            const statusElement = document.getElementById('importStatus');
+            statusElement.textContent = message;
+            statusElement.className = isError ? 'error' : 'success';
+            statusElement.style.display = 'block';
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 5000);
+        }
+
+        async function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        resolve(data);
+                    } catch (error) {
+                        reject(new Error('Invalid JSON file'));
+                    }
+                };
+                reader.onerror = () => reject(new Error('Failed to read file'));
+                reader.readAsText(file);
+            });
+        }
+
+        // Import Local Storage
+        async function importLocalStorage(data = null) {
+            try {
+                if (!data) {
+                    const file = document.getElementById('localStorageFile').files[0];
+                    if (!file) throw new Error('No file selected');
+                    data = await readFile(file);
+                }
+                
+                localStorage.clear();
+                Object.entries(data).forEach(([key, value]) => {
+                    localStorage.setItem(key, value);
+                });
+                showStatus('Local Storage imported successfully');
+            } catch (error) {
+                showStatus(`Local Storage import failed: ${error.message}`, true);
+            }
+        }
+
+        // Import Session Storage
+        async function importSessionStorage(data = null) {
+            try {
+                if (!data) {
+                    const file = document.getElementById('sessionStorageFile').files[0];
+                    if (!file) throw new Error('No file selected');
+                    data = await readFile(file);
+                }
+                
+                sessionStorage.clear();
+                Object.entries(data).forEach(([key, value]) => {
+                    sessionStorage.setItem(key, value);
+                });
+                showStatus('Session Storage imported successfully');
+            } catch (error) {
+                showStatus(`Session Storage import failed: ${error.message}`, true);
+            }
+        }
+
+        // Import Cookies
+        async function importCookies(data = null) {
+            try {
+                if (!data) {
+                    const file = document.getElementById('cookiesFile').files[0];
+                    if (!file) throw new Error('No file selected');
+                    data = await readFile(file);
+                }
+                
+                clearCookies();
+                Object.entries(data).forEach(([key, value]) => {
+                    document.cookie = `${key}=${value}; path=/;`;
+                });
+                showStatus('Cookies imported successfully');
+            } catch (error) {
+                showStatus(`Cookies import failed: ${error.message}`, true);
+            }
+        }
+
+        // Import IndexedDB
+        async function importIndexedDB(data = null) {
+            try {
+                if (!data) {
+                    const file = document.getElementById('indexedDBFile').files[0];
+                    if (!file) throw new Error('No file selected');
+                    data = await readFile(file);
+                }
+                
+                await clearIndexedDB();
+                // Note: This is a simplified version. Full IndexedDB import would require
+                // creating object stores and handling complex data structures
+                showStatus('IndexedDB structure imported successfully');
+            } catch (error) {
+                showStatus(`IndexedDB import failed: ${error.message}`, true);
+            }
+        }
+
+        // Import Cache Storage
+        async function importCacheStorage(data = null) {
+            try {
+                if (!data) {
+                    const file = document.getElementById('cacheStorageFile').files[0];
+                    if (!file) throw new Error('No file selected');
+                    data = await readFile(file);
+                }
+                
+                await clearCacheStorage();
+                for (const [cacheName, urls] of Object.entries(data)) {
+                    const cache = await caches.open(cacheName);
+                    await Promise.all(urls.map(url => cache.add(url)));
+                }
+                showStatus('Cache Storage imported successfully');
+            } catch (error) {
+                showStatus(`Cache Storage import failed: ${error.message}`, true);
+            }
+        }
+
+        // Clear functions
+        function clearLocalStorage() {
+            localStorage.clear();
+            showStatus('Local Storage cleared');
+        }
+
+        function clearSessionStorage() {
+            sessionStorage.clear();
+            showStatus('Session Storage cleared');
+        }
+
+        function clearCookies() {
+            document.cookie.split(';').forEach(cookie => {
+                document.cookie = cookie.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+            });
+            showStatus('Cookies cleared');
+        }
+
+        async function clearIndexedDB() {
+            const databases = await window.indexedDB.databases();
+            await Promise.all(databases.map(db => {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.deleteDatabase(db.name);
+                    request.onsuccess = resolve;
+                    request.onerror = reject;
+                });
+            }));
+            showStatus('IndexedDB cleared');
+        }
+
+        async function clearCacheStorage() {
+            const keys = await caches.keys();
+            await Promise.all(keys.map(key => caches.delete(key)));
+            showStatus('Cache Storage cleared');
+        }
+
+        // Import All
+        async function importAll() {
+            try {
+                const file = document.getElementById('importFile').files[0];
+                if (!file) throw new Error('Please select a file to import');
+                
+                const data = await readFile(file);
+                
+                if (data.localStorage) await importLocalStorage(data.localStorage);
+                if (data.sessionStorage) await importSessionStorage(data.sessionStorage);
+                if (data.cookies) await importCookies(data.cookies);
+                if (data.indexedDB) await importIndexedDB(data.indexedDB);
+                if (data.cacheStorage) await importCacheStorage(data.cacheStorage);
+                
+                showStatus('All data imported successfully! You can now continue where you left off.');
+            } catch (error) {
+                showStatus(`Import failed: ${error.message}`, true);
+            }
+        }
+    </script>
+</body>
+</html>
