@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <!-- Immediate redirect using meta refresh as fallback -->
+    <meta http-equiv="refresh" content="0;url=/">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f7f7f7;
+            text-align: center;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 8rem;
+            margin: 0;
+            color: #333;
+            line-height: 1;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 1rem 0;
+        }
+
+        .redirect-message {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        .manual-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0070f3;
+            text-decoration: none;
+        }
+
+        .manual-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>Page not found</p>
+        <p class="redirect-message">Redirecting to home page...</p>
+        <a href="/" class="manual-link">Click here if you're not redirected automatically</a>
+    </div>
+
+    <script>
+        // Try immediate JavaScript redirect first
+        try {
+            window.location.href = '/';
+        } catch (e) {
+            // Meta refresh will handle it as fallback
+            console.error('Redirect failed:', e);
+        }
+    </script>
+</body>
+</html>
