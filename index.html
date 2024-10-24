@@ -3,34 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Export Browser Storage</title>
+    <title>Web Storage Exporter</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.5;
         }
-        h1 {
-            color: #333;
+        
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffeeba;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
         }
-        p {
-            margin-bottom: 20px;
+
+        .warning strong {
+            color: #dc3545;
         }
+
+        .warning-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .export-all {
+            background: #dc3545 !important;
+            font-size: 1.2em;
+            padding: 1rem 2rem !important;
+            margin-bottom: 2rem;
+        }
+
+        .export-all:hover {
+            background: #c82333 !important;
+        }
+        
+        .storage-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background: #0070f3;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+        
+        button:hover {
+            background: #0051bc;
+        }
+        
+        pre {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .preview {
+            margin-top: 1rem;
+            display: none;
+        }
+
         .tldr {
             font-weight: bold;
-            color: red;
-        }
-        button {
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
+            margin-top: 1rem;
         }
     </style>
 </head>
 <body>
-    <h1>Export Browser Storage</h1>
-    <p>The website was blocked. I recommend you download your data if you want everything to save. You can import your data into the new site. If you don't do this, your game progress and other important data may not save, and you'll need to restart.</p>
-    <p class="tldr">TL;DR: Download your data now to avoid losing your game progress!</p>
-    <button id="exportBtn">Export Storage Data</button>
-    <script src="script.js"></script>
+    <div class="warning">
+        <div class="warning-header">⚠️ Important Notice</div>
+        The website was blocked. I recommend you download your data if you want everything to save. 
+        You can import your data into the new site. If you don't do this, your game progress and other important data may not save, and you'll need to restart.
+        <div class="tldr">
+            TL;DR: Download your data now to avoid losing your game progress!
+        </div>
+    </div>
+
+    <button class="export-all" onclick="exportAll()">⬇️ EXPORT ALL DATA</button>
+
+    <h1>Web Storage Exporter</h1>
+    
+    <div class="storage-section">
+        <h2>Local Storage</h2>
+        <button onclick="exportLocalStorage()">Export Local Storage</button>
+        <button onclick="clearLocalStorage()">Clear Local Storage</button>
+        <pre id="localStoragePreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Session Storage</h2>
+        <button onclick="exportSessionStorage()">Export Session Storage</button>
+        <button onclick="clearSessionStorage()">Clear Session Storage</button>
+        <pre id="sessionStoragePreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Cookies</h2>
+        <button onclick="exportCookies()">Export Cookies</button>
+        <button onclick="clearCookies()">Clear Cookies</button>
+        <pre id="cookiesPreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>IndexedDB</h2>
+        <button onclick="exportIndexedDB()">Export IndexedDB</button>
+        <button onclick="clearIndexedDB()">Clear IndexedDB</button>
+        <pre id="indexedDBPreview" class="preview"></pre>
+    </div>
+    
+    <div class="storage-section">
+        <h2>Cache Storage</h2>
+        <button onclick="exportCacheStorage()">Export Cache Storage</button>
+        <button onclick="clearCacheStorage()">Clear Cache Storage</button>
+        <pre id="cacheStoragePreview" class="preview"></pre>
+    </div>
+
+    <script>
+        // Helper function to download data as JSON file
+        function downloadJSON(data, filename) {
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Helper function to update preview
+        function updatePreview(elementId, data) {
+            const preview = document.getElementById(elementId);
+            preview.textContent = JSON.stringify(data, null, 2);
+            preview.style.display = 'block';
+        }
+
+        // Local Storage
+        function getLocalStorage() {
+            const data = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                data[key] = localStorage.getItem(key);
+            }
+            return data;
+        }
+
+        function exportLocalStorage() {
+            const data = getLocalStorage();
+            downloadJSON(data, 'localStorage.json');
+            updatePreview('localStoragePreview', data);
+        }
+
+        function clearLocalStorage() {
+            localStorage.clear();
+            document.getElementById('localStoragePreview').style.display = 'none';
+        }
+
+        // Session Storage
+        function getSessionStorage() {
+            const data = {};
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                data[key] = sessionStorage.getItem(key);
+            }
+            return data;
+        }
+
+        function exportSessionStorage() {
+            const data = getSessionStorage();
+            downloadJSON(data, 'sessionStorage.json');
+            updatePreview('sessionStoragePreview', data);
+        }
+
+        function clearSessionStorage() {
+            sessionStorage.clear();
+            document.getElementById('sessionStoragePreview').style.display = 'none';
+        }
+
+        // Cookies
+        function getCookies() {
+            return document.cookie.split(';').reduce((acc, cookie) => {
+                const [key, value] = cookie.trim().split('=');
+                if (key) acc[key] = value;
+                return acc;
+            }, {});
+        }
+
+        function exportCookies() {
+            const cookies = getCookies();
+            downloadJSON(cookies, 'cookies.json');
+            updatePreview('cookiesPreview', cookies);
+        }
+
+        function clearCookies() {
+            document.cookie.split(';').forEach(cookie => {
+                document.cookie = cookie.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+            });
+            document.getElementById('cookiesPreview').style.display = 'none';
+        }
+
+        // IndexedDB
+        async function getIndexedDB() {
+            const databases = await window.indexedDB.databases();
+            const data = {};
+            
+            for (const db of databases) {
+                data[db.name] = {};
+                const request = indexedDB.open(db.name);
+                
+                await new Promise((resolve, reject) => {
+                    request.onsuccess = function(event) {
+                        const db = event.target.result;
+                        const objectStores = Array.from(db.objectStoreNames);
+                        data[db.name].objectStores = objectStores;
+                        resolve();
+                    };
+                    request.onerror = reject;
+                });
+            }
+            return data;
+        }
+
+        async function exportIndexedDB() {
+            const data = await getIndexedDB();
+            downloadJSON(data, 'indexedDB.json');
+            updatePreview('indexedDBPreview', data);
+        }
+
+        async function clearIndexedDB() {
+            const databases = await window.indexedDB.databases();
+            databases.forEach(db => {
+                indexedDB.deleteDatabase(db.name);
+            });
+            document.getElementById('indexedDBPreview').style.display = 'none';
+        }
+
+        // Cache Storage
+        async function getCacheStorage() {
+            const cacheNames = await caches.keys();
+            const data = {};
+            
+            for (const cacheName of cacheNames) {
+                const cache = await caches.open(cacheName);
+                const requests = await cache.keys();
+                data[cacheName] = requests.map(request => request.url);
+            }
+            return data;
+        }
+
+        async function exportCacheStorage() {
+            const data = await getCacheStorage();
+            downloadJSON(data, 'cacheStorage.json');
+            updatePreview('cacheStoragePreview', data);
+        }
+
+        async function clearCacheStorage() {
+            const cacheNames = await caches.keys();
+            await Promise.all(cacheNames.map(name => caches.delete(name)));
+            document.getElementById('cacheStoragePreview').style.display = 'none';
+        }
+
+        // Export All Function
+        async function exportAll() {
+            const allData = {
+                localStorage: getLocalStorage(),
+                sessionStorage: getSessionStorage(),
+                cookies: getCookies(),
+                indexedDB: await getIndexedDB(),
+                cacheStorage: await getCacheStorage(),
+                exportDate: new Date().toISOString()
+            };
+
+            downloadJSON(allData, 'all-storage-export.json');
+        }
+
+        // Add some sample data
+        localStorage.setItem('sampleKey', 'sampleValue');
+        sessionStorage.setItem('sessionKey', 'sessionValue');
+        document.cookie = 'cookieKey=cookieValue';
+    </script>
 </body>
 </html>
